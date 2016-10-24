@@ -4,7 +4,8 @@ using System.Collections;
 
 public class TextController : MonoBehaviour
 {
-    public Text objText;
+    public Text display;
+    public InputField input;
     int intRandomNumber;
     int intGuessedNumber;
 
@@ -12,6 +13,7 @@ public class TextController : MonoBehaviour
 	void Start ()
     {
         InitializeGame();
+        input.onEndEdit.AddListener(CheckAnswer);
 	}
 	
 	// Update is called once per frame
@@ -22,36 +24,39 @@ public class TextController : MonoBehaviour
         {
             InitializeGame();
         }
-        
-        // Detect that a keystroke was pressed
-        if (Input.anyKeyDown)
+	}
+
+    private void CheckAnswer(string arg)
+    {
+        // Reset input field
+        input.text = "";
+
+        // Compare input to random number
+        if (int.TryParse(arg, out intGuessedNumber))
         {
-            // Test to see if the keystroke was a number
-            if (int.TryParse(Input.inputString, out intGuessedNumber))
+            if (intRandomNumber > intGuessedNumber)
             {
-                if (intRandomNumber > intGuessedNumber)
-                {
-                    objText.text = string.Format("You guessed {0}. You are too low", intGuessedNumber);
-                }
-                if (intRandomNumber < intGuessedNumber)
-                {
-                    objText.text = string.Format("You guessed {0}. You are too high", intGuessedNumber);
-                }
-                if (intRandomNumber == intGuessedNumber)
-                {
-                    objText.text = string.Format("You guessed {0}.\nYou are correct!\n(press spacebar to continue)", intGuessedNumber);
-                }
+                display.text = string.Format("You guessed {0}. You are too low", intGuessedNumber);
+            }
+            if (intRandomNumber < intGuessedNumber)
+            {
+                display.text = string.Format("You guessed {0}. You are too high", intGuessedNumber);
+            }
+            if (intRandomNumber == intGuessedNumber)
+            {
+                display.text = string.Format("You guessed {0}.\nYou are correct!\n(press spacebar to continue)", intGuessedNumber);
             }
         }
-	}
+    }
 
     private void InitializeGame()
     {
         // Pick a random number
-        intRandomNumber = Random.Range(1, 10);
+        intRandomNumber = Random.Range(1, 100);
+        Debug.Log(intRandomNumber);
 
         // Set the text to start the game
-        objText.text = "Geuss a number between 1 and 10";
+        display.text = "Geuss a number between 1 and 100";
     }
 
 }

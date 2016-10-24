@@ -16,6 +16,14 @@ PROCESS
 			parse to number and save to intGuessedNumber
 			compare guess to random
 				display text accordingly
+	Add inputfield GUI
+	In Start()
+		input.onEndEdit.AddListener(CheckAnswer)
+			onEndEdit is an event
+			AddListener prevents having to check during Update
+	CheckAnswer(stirng arg)
+		moved parse and compare from update to here
+
 
 TODO
 	allow for multiple digit numbers
@@ -31,3 +39,7 @@ NOTES
 		attempts to parse inputString to an integer, then saves it to out
 	string.Format("inputs {0} and {1}", input0, input1)
 		formatted string replaces {x} with proceeding inputs
+	InputField.onEndEdit.AddListener(MethodCall)
+		InputField can specify input type
+		But onEndEdit will still assume string
+		So MethodCall must take string parameter, even if input can only be int
