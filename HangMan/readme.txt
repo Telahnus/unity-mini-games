@@ -17,4 +17,22 @@ Plan
 			fill in blanks
 			or add stick figure
 		check win/loss condition
-		
+
+Process
+	created canvas, welcome text, and button
+	created gamecontrol object and script
+	public method in script, attached to button onclick
+		in editor, drag GCobject onto button component
+		alternative, add eventlistner in script
+	textasset added onto script
+	start()
+		splits textfile into string[]
+		split using char[] delims {\r, \n}
+			C# by itself would allow "\r\n"
+			but Unity only allows single char delims
+	generateWord()
+		picks a random word from string list
+		displays "_ " according to length
+
+ToDo
+	listen for keydown and check letters
