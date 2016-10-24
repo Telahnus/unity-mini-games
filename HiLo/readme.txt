@@ -29,4 +29,5 @@ TODO
 NOTES
 	int.TryParse(Input.inputString, out intGuessedNumber)
 		attempts to parse inputString to an integer, then saves it to out
-		
+	string.Format("inputs {0} and {1}", input0, input1)
+		formatted string replaces {x} with proceeding inputs
