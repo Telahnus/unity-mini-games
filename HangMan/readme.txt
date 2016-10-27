@@ -33,6 +33,13 @@ Process
 	generateWord()
 		picks a random word from string list
 		displays "_ " according to length
+	onKeyDown
+		if letter, convert to lowercase and save to charInput
+	CheckChar
+		if charInput is in charList	
+			update display
 
 ToDo
-	listen for keydown and check letters
+	show false guesses
+	add stick figure
+	add win/loss conditions
